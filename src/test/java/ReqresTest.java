@@ -1,21 +1,49 @@
+import lombok.UserData;
 import org.junit.jupiter.api.Test;
+import specs.Specs;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static specs.Specs.*;
 
 public class ReqresTest {
 
     @Test
+    void checkSingleEmailLombok() {
+        UserData data = given()
+                .spec(Specs.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .log().body()
+                .spec(Specs.responseOk)
+                .extract().as(UserData.class);
+        assertEquals("janet.weaver@reqres.in", data.getUser().getEmail());
+    }
+
+    @Test
+    void checkSingleNameLombok() {
+        UserData data = given()
+                .spec(Specs.request)
+                .when()
+                .get("/users/2")
+                .then()
+                .spec(Specs.responseOk)
+                .log().body()
+                .extract().as(UserData.class);
+        assertEquals("Janet", data.getUser().getFirstName());
+        assertEquals("Weaver", data.getUser().getLastName());
+    }
+
+    @Test
     void listUserTest() {
         given()
-                .log().uri()
+                .spec(request)
                 .when()
-                .get("https://reqres.in/api/users?page=2")
+                .get("/users?page=2")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(Specs.responseOk)
                 .body("total", is(12))
                 .body("support.text", is("To keep ReqRes free, contributions towards server costs are appreciated!"))
                 .body("support.url", is("https://reqres.in/#support-heading"));
@@ -24,16 +52,13 @@ public class ReqresTest {
     @Test
     void createUserTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
-        given()
-                .log().uri()
+                given()
+                .spec(request)
                 .body(body)
-                .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/users")
+                .post("/users")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(201)
+                .spec(Specs.responseCreated)
                 .body("name", is("morpheus"))
                 .body("job", is("leader"));
     }
@@ -41,33 +66,28 @@ public class ReqresTest {
     @Test
     void updateUserTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"zion resident\" }";
-        given()
-                .log().uri()
+                given()
+                .spec(request)
                 .body(body)
-                .contentType(JSON)
                 .when()
-                .put("https://reqres.in/api/users/2")
+                .put("/users/2")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(Specs.responseOk)
                 .body("name", is("morpheus"))
                 .body("job", is("zion resident"));
+
     }
 
     @Test
     void loginSuccessfulTest() {
         String body = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\" }";
         given()
-                .log().uri()
+                .spec(request)
                 .body(body)
-                .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post("/login")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
+                .spec(Specs.responseOk)
                 .body("token", is("QpwL5tke4Pnpja7X4"));
     }
 
@@ -75,15 +95,12 @@ public class ReqresTest {
     void loginUnsuccessfulTest() {
         String body = "{ \"email\": \"peter@klaven\" }";
         given()
-                .log().uri()
+                .spec(request)
                 .body(body)
-                .contentType(JSON)
                 .when()
-                .post("https://reqres.in/api/login")
+                .post("/login")
                 .then()
-                .log().status()
-                .log().body()
-                .statusCode(400)
+                .spec(Specs.responseBadRequest)
                 .body("error", is("Missing password"));
     }
 }
