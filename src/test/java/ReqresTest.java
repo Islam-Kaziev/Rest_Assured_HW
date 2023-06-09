@@ -1,8 +1,11 @@
+import lombok.User;
 import lombok.UserData;
+import lombok.UserResponse;
 import org.junit.jupiter.api.Test;
 import specs.Specs;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specs.Specs.*;
@@ -50,57 +53,68 @@ public class ReqresTest {
     }
 
     @Test
-    void createUserTest() {
-        String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
-                given()
+    void createUserTestLombok() {
+        User userBody = new User();
+        userBody.setName("morpheus");
+        userBody.setJob("leader");
+        UserResponse response = given()
                 .spec(request)
-                .body(body)
+                .body(userBody)
                 .when()
                 .post("/users")
                 .then()
                 .spec(Specs.responseCreated)
-                .body("name", is("morpheus"))
-                .body("job", is("leader"));
+                .extract().as(UserResponse.class);
+        assertThat(response.getName()).isEqualTo("morpheus");
+        assertThat(response.getJob()).isEqualTo("leader");
     }
 
     @Test
-    void updateUserTest() {
-        String body = "{ \"name\": \"morpheus\", \"job\": \"zion resident\" }";
-                given()
+    void updateUserTestLombok() {
+        User userBody = new User();
+        userBody.setName("morpheus");
+        userBody.setJob("zion resident");
+        UserResponse response = given()
                 .spec(request)
-                .body(body)
+                .body(userBody)
                 .when()
                 .put("/users/2")
                 .then()
                 .spec(Specs.responseOk)
-                .body("name", is("morpheus"))
-                .body("job", is("zion resident"));
+                .extract().as(UserResponse.class);
+        assertThat(response.getName()).isEqualTo("morpheus");
+        assertThat(response.getJob()).isEqualTo("zion resident");
 
     }
 
     @Test
     void loginSuccessfulTest() {
-        String body = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\" }";
-        given()
+        User userBody = new User();
+        userBody.setEmail("eve.holt@reqres.in");
+        userBody.setPassword("cityslicka");
+        UserResponse response = given()
                 .spec(request)
-                .body(body)
+                .body(userBody)
                 .when()
                 .post("/login")
                 .then()
                 .spec(Specs.responseOk)
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .extract().as(UserResponse.class);
+        assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4");
     }
 
     @Test
     void loginUnsuccessfulTest() {
-        String body = "{ \"email\": \"peter@klaven\" }";
-        given()
+        User userBody = new User();
+        userBody.setEmail("peter@klaven");
+        UserResponse response = given()
                 .spec(request)
-                .body(body)
+                .body(userBody)
                 .when()
                 .post("/login")
                 .then()
                 .spec(Specs.responseBadRequest)
-                .body("error", is("Missing password"));
+                .extract().as(UserResponse.class);
+        assertThat(response.getError()).isEqualTo("Missing password");
     }
 }
