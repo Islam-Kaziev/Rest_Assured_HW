@@ -48,7 +48,7 @@
 
 ## 🧪: Пример авто-тест кейса
 <p align="center">
-<img title="AllureSuite" src="media/screens/AllureTC.jpg">
+<img title="AllureSuite" src="media/screens/Allure.png">
 </p>
 
 <a id="console"></a>
@@ -67,7 +67,7 @@ clean test
 ## ⛅: Основной отчет
 
 <p align="center">
-<img title="Allure Overview" src="media/screens/Allure.png">
+<img title="Allure Overview" src="media/screens/AllureReport.png">
 </p>
 
 <a id="allure"></a>
