@@ -1,7 +1,8 @@
-import io.qameta.allure.restassured.AllureRestAssured;
+import io.qameta.allure.Owner;
 import lombok.User;
 import lombok.UserData;
 import lombok.UserResponse;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import specs.Specs;
 
@@ -16,8 +17,10 @@ import static specs.Specs.request;
 public class ReqresTest {
 
     @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Проверка наличия почты")
     void checkSingleEmailLombok() {
-        UserData data = step("Check single email", () ->
+        UserData data = step("Проверить наличие почты", () ->
                 given()
                 .filter(withCustomTemplates())
                 .spec(Specs.request)
@@ -28,13 +31,15 @@ public class ReqresTest {
                 .spec(Specs.responseOk)
                 .extract().as(UserData.class));
 
-        step("Check list email", () ->
+        step("Проверить, что в ответе нужная почта", () ->
         assertEquals("janet.weaver@reqres.in", data.getUser().getEmail()));
     }
 
     @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Проверка имени и фамилии пользователя")
     void checkSingleNameLombok() {
-        UserData data = step("Check single name", () ->
+        UserData data = step("Проверить имя и фамилию пользователя", () ->
                 given()
                 .filter(withCustomTemplates())
                 .spec(Specs.request)
@@ -44,15 +49,17 @@ public class ReqresTest {
                 .spec(Specs.responseOk)
                 .log().body()
                 .extract().as(UserData.class));
-        step("Check list name", () ->
+        step("Проверить имя", () ->
         assertEquals("Janet", data.getUser().getFirstName()));
-        step("Check list lastname", () ->
+        step("Проверить фамилию", () ->
         assertEquals("Weaver", data.getUser().getLastName()));
     }
 
     @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Проверка вывода текста и урла для раздела поддержки")
     void listUserTest() {
-        step("Check list user", () ->
+        step("Провить вывод текста и урла для раздела поддержки", () ->
                 given()
                 .filter(withCustomTemplates())
                 .spec(request)
@@ -66,11 +73,13 @@ public class ReqresTest {
     }
 
     @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Создание нового пользователя")
     void createUserTestLombok() {
         User userBody = new User();
         userBody.setName("morpheus");
         userBody.setJob("leader");
-        UserResponse response = step("Create new user", () ->
+        UserResponse response = step("Создать нового пользователя", () ->
                 given()
                 .filter(withCustomTemplates())
                 .spec(request)
@@ -80,18 +89,20 @@ public class ReqresTest {
                 .then()
                 .spec(Specs.responseCreated)
                 .extract().as(UserResponse.class));
-        step("Check name", () ->
+        step("Проверить имя созданного пользователя", () ->
         assertThat(response.getName()).isEqualTo("morpheus"));
-        step("Check job", () ->
+        step("Проверить поле работа у нового пользователя", () ->
         assertThat(response.getJob()).isEqualTo("leader"));
     }
 
     @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Обновление данных пользователя")
     void updateUserTestLombok() {
         User userBody = new User();
         userBody.setName("morpheus");
         userBody.setJob("zion resident");
-        UserResponse response = step("Update user data", () ->
+        UserResponse response = step("Обновить данные пользователя", () ->
                 given()
                 .filter(withCustomTemplates())
                 .spec(request)
@@ -102,19 +113,21 @@ public class ReqresTest {
                 .spec(Specs.responseOk)
                 .extract().as(UserResponse.class));
 
-        step("Check name", () ->
+        step("Проверить имя пользователя", () ->
         assertThat(response.getName()).isEqualTo("morpheus"));
-        step("Check job", () ->
+        step("Проверить новое значение в поле работа", () ->
         assertThat(response.getJob()).isEqualTo("zion resident"));
 
     }
 
     @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Успешная авторизация пользователя")
     void loginSuccessfulTest() {
         User userBody = new User();
         userBody.setEmail("eve.holt@reqres.in");
         userBody.setPassword("cityslicka");
-        UserResponse response = step("Successful login", () ->
+        UserResponse response = step("Успешная авторизация", () ->
                 given()
                 .filter(withCustomTemplates())
                 .spec(request)
@@ -125,16 +138,18 @@ public class ReqresTest {
                 .spec(Specs.responseOk)
                 .extract().as(UserResponse.class));
 
-        step("Check token", () ->
+        step("Проверить токен", () ->
         assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
     }
 
     @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Неуспешная авторизация пользователя")
     void loginUnsuccessfulTest() {
         User userBody = new User();
         userBody.setEmail("peter@klaven");
 
-        UserResponse response = step("Unsuccessful login", () ->
+        UserResponse response = step("Неуспешная авторизация", () ->
                 given()
                 .filter(withCustomTemplates())
                 .spec(request)
@@ -145,7 +160,21 @@ public class ReqresTest {
                 .spec(Specs.responseBadRequest)
                 .extract().as(UserResponse.class));
 
-        step("Check displayed error", () ->
+        step("Проверить наличие текста ошибки", () ->
         assertThat(response.getError()).isEqualTo("Missing password"));
+    }
+
+    @Test
+    @Owner("Казиев Ислам")
+    @DisplayName("Удаление данных")
+    void deleteUser() {
+        step("Запрос на удаление", () ->
+                        given()
+                        .filter(withCustomTemplates())
+                        .spec(request)
+                        .when()
+                        .delete("/users/2")
+                        .then()
+                        .spec(Specs.responseDelete));
     }
 }

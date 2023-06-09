@@ -29,6 +29,9 @@ public class Specs {
             .expectStatusCode(201)
             .build();
 
+    public static ResponseSpecification responseDelete = new ResponseSpecBuilder()
+            .expectStatusCode(204)
+            .build();
 
     public static ResponseSpecification responseBadRequest = new ResponseSpecBuilder()
             .log(STATUS)
