@@ -15,16 +15,16 @@
 ## 🧰: Стек используемых технологий
 
 <p align="center">
-<a href="https://www.jetbrains.com/idea/"><img src="media/logo/Idea.svg" width="50" height="50"  alt="IDEA"/></a>
-<a href="https://https://rest-assured.io/"><img src="media/logo/rest-assured.jpg" width="50" height="50"  alt="Rest-Assured"/></a>
-<a href="https://www.java.com/"><img src="media/logo/Java.svg" width="50" height="50"  alt="Java"/></a>
-<a href="https://github.com/"><img src="media/logo/GitHub.svg" width="50" height="50"  alt="Github"/></a>
-<a href="https://junit.org/junit5/"><img src="media/logo/Junit5.svg" width="50" height="50"  alt="JUnit 5"/></a>
-<a href="https://gradle.org/"><img src="media/logo/Gradle.svg" width="50" height="50"  alt="Gradle"/></a>
-<a href="https://github.com/allure-framework/allure2"><img src="media/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a>
-<a href="https://https://qameta.io/"><img src="media/logo/AllureTestOps.svg" width="50" height="50"  alt="AllureTestOps"/></a>
-<a href="https://www.jenkins.io/"><img src="media/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>
-<a href="https://https://telegram.org/"><img src="media/logo/Telegram.svg" width="50" height="50"  alt="Telegram"/></a>
+<a href="https://www.jetbrains.com/idea/"><img src="src/test/media/logo/Idea.svg" width="50" height="50"  alt="IDEA"/></a>
+<a href="https://https://rest-assured.io/"><img src="src/test/media/logo/rest-assured.jpg" width="50" height="50"  alt="Rest-Assured"/></a>
+<a href="https://www.java.com/"><img src="src/test/media/logo/Java.svg" width="50" height="50"  alt="Java"/></a>
+<a href="https://github.com/"><img src="src/test/media/logo/GitHub.svg" width="50" height="50"  alt="Github"/></a>
+<a href="https://junit.org/junit5/"><img src="src/test/media/logo/Junit5.svg" width="50" height="50"  alt="JUnit 5"/></a>
+<a href="https://gradle.org/"><img src="src/test/media/logo/Gradle.svg" width="50" height="50"  alt="Gradle"/></a>
+<a href="https://github.com/allure-framework/allure2"><img src="src/test/media/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a>
+<a href="https://https://qameta.io/"><img src="src/test/media/logo/AllureTestOps.svg" width="50" height="50"  alt="AllureTestOps"/></a>
+<a href="https://www.jenkins.io/"><img src="src/test/media/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>
+<a href="https://https://telegram.org/"><img src="src/test/media/logo/Telegram.svg" width="50" height="50"  alt="Telegram"/></a>
 </p>
 
 <a id="checking"></a>
