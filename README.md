@@ -75,7 +75,7 @@ clean test
 
 ## :pinching_hand:: Пример тест-кейса
 <p align="center">
-<img title="AllureTC" src="media/screens/TestCase.jpg">
+<img title="AllureTC" src="media/screens/AllureTestOps.png">
 </p>
 
 ## :runner:: Прогоны
