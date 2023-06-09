@@ -88,5 +88,5 @@ clean test
 После завершения сборки специальный бот, созданный в <code>Telegram</code>, автоматически обрабатывает и отправляет сообщение с отчетом о прогоне тестов.
 
 <p align="center">
-<img title="telegram" src="media/screens/Telegram1.jpg">
+<img title="telegram" src="media/screens/Telegram.png">
 </p>
