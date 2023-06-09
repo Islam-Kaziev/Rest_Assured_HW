@@ -18,7 +18,7 @@ public class ReqresTest {
 
     @Test
     @Owner("Казиев Ислам")
-    @DisplayName("Проверка наличия почты")
+        @DisplayName("Проверка наличия почты")
     void checkSingleEmailLombok() {
         UserData data = step("Проверить наличие почты", () ->
                 given()
