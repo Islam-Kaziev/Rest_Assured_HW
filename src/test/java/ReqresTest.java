@@ -4,15 +4,13 @@ import lombok.UserData;
 import lombok.UserResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import specs.Specs;
 
-import static helpers.CustomAllureListener.withCustomTemplates;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.Specs.request;
+import static specs.Specs.*;
 
 public class ReqresTest {
 
@@ -21,14 +19,12 @@ public class ReqresTest {
         @DisplayName("Проверка наличия почты")
     void checkSingleEmailLombok() {
         UserData data = step("Проверить наличие почты", () ->
-                given()
-                .filter(withCustomTemplates())
-                .spec(Specs.request)
+                given(request)
                 .when()
                 .get("/users/2")
                 .then()
                 .log().body()
-                .spec(Specs.responseOk)
+                .spec(responseOk200)
                 .extract().as(UserData.class));
 
         step("Проверить, что в ответе нужная почта", () ->
@@ -40,13 +36,11 @@ public class ReqresTest {
     @DisplayName("Проверка имени и фамилии пользователя")
     void checkSingleNameLombok() {
         UserData data = step("Проверить имя и фамилию пользователя", () ->
-                given()
-                .filter(withCustomTemplates())
-                .spec(Specs.request)
+                given(request)
                 .when()
                 .get("/users/2")
                 .then()
-                .spec(Specs.responseOk)
+                .spec(responseOk200)
                 .log().body()
                 .extract().as(UserData.class));
         step("Проверить имя", () ->
@@ -60,13 +54,11 @@ public class ReqresTest {
     @DisplayName("Проверка вывода текста и урла для раздела поддержки")
     void listUserTest() {
         step("Провить вывод текста и урла для раздела поддержки", () ->
-                given()
-                .filter(withCustomTemplates())
-                .spec(request)
+                given(request)
                 .when()
                 .get("/users?page=2")
                 .then()
-                .spec(Specs.responseOk))
+                .spec(responseOk200))
                 .body("total", is(12))
                 .body("support.text", is("To keep ReqRes free, contributions towards server costs are appreciated!"))
                 .body("support.url", is("https://reqres.in/#support-heading"));
@@ -80,14 +72,12 @@ public class ReqresTest {
         userBody.setName("morpheus");
         userBody.setJob("leader");
         UserResponse response = step("Создать нового пользователя", () ->
-                given()
-                .filter(withCustomTemplates())
-                .spec(request)
+                given(request)
                 .body(userBody)
                 .when()
                 .post("/users")
                 .then()
-                .spec(Specs.responseCreated)
+                .spec(responseCreated201)
                 .extract().as(UserResponse.class));
         step("Проверить имя созданного пользователя", () ->
         assertThat(response.getName()).isEqualTo("morpheus"));
@@ -103,14 +93,12 @@ public class ReqresTest {
         userBody.setName("morpheus");
         userBody.setJob("zion resident");
         UserResponse response = step("Обновить данные пользователя", () ->
-                given()
-                .filter(withCustomTemplates())
-                .spec(request)
+                given(request)
                 .body(userBody)
                 .when()
                 .put("/users/2")
                 .then()
-                .spec(Specs.responseOk)
+                .spec(responseOk200)
                 .extract().as(UserResponse.class));
 
         step("Проверить имя пользователя", () ->
@@ -128,14 +116,12 @@ public class ReqresTest {
         userBody.setEmail("eve.holt@reqres.in");
         userBody.setPassword("cityslicka");
         UserResponse response = step("Успешная авторизация", () ->
-                given()
-                .filter(withCustomTemplates())
-                .spec(request)
+                given(request)
                 .body(userBody)
                 .when()
                 .post("/login")
                 .then()
-                .spec(Specs.responseOk)
+                .spec(responseOk200)
                 .extract().as(UserResponse.class));
 
         step("Проверить токен", () ->
@@ -150,14 +136,12 @@ public class ReqresTest {
         userBody.setEmail("peter@klaven");
 
         UserResponse response = step("Неуспешная авторизация", () ->
-                given()
-                .filter(withCustomTemplates())
-                .spec(request)
+                given(request)
                 .body(userBody)
                 .when()
                 .post("/login")
                 .then()
-                .spec(Specs.responseBadRequest)
+                .spec(responseBadRequest400)
                 .extract().as(UserResponse.class));
 
         step("Проверить наличие текста ошибки", () ->
@@ -169,12 +153,10 @@ public class ReqresTest {
     @DisplayName("Удаление данных")
     void deleteUser() {
         step("Запрос на удаление", () ->
-                        given()
-                        .filter(withCustomTemplates())
-                        .spec(request)
+                        given(request)
                         .when()
                         .delete("/users/2")
                         .then()
-                        .spec(Specs.responseDelete));
+                        .spec(responseDelete204));
     }
 }
