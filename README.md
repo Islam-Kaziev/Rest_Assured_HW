@@ -16,7 +16,7 @@
 
 <p align="center">
 <a href="https://www.jetbrains.com/idea/"><img src="media/logo/Idea.svg" width="50" height="50"  alt="IDEA"/></a>
-<a href="https://https://rest-assured.io/"><img src="media/logo/rest-assured.jpg" width="50" height="50"  alt="Rest-Assured"/></a>
+<a href="https://rest-assured.io/"><img src="media/logo/rest-assured.jpg" width="50" height="50"  alt="Rest-Assured"/></a>
 <a href="https://www.java.com/"><img src="media/logo/Java.svg" width="50" height="50"  alt="Java"/></a>
 <a href="https://github.com/"><img src="media/logo/GitHub.svg" width="50" height="50"  alt="Github"/></a>
 <a href="https://junit.org/junit5/"><img src="media/logo/Junit5.svg" width="50" height="50"  alt="JUnit 5"/></a>
