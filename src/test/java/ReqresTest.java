@@ -16,19 +16,19 @@ public class ReqresTest {
 
     @Test
     @Owner("Казиев Ислам")
-        @DisplayName("Проверка наличия почты")
+    @DisplayName("Проверка наличия почты")
     void checkSingleEmailLombok() {
         UserData data = step("Проверить наличие почты", () ->
                 given(request)
-                .when()
-                .get("/users/2")
-                .then()
-                .log().body()
-                .spec(responseOk200)
-                .extract().as(UserData.class));
+                        .when()
+                        .get("/users/2")
+                        .then()
+                        .log().body()
+                        .spec(responseOk200)
+                        .extract().as(UserData.class));
 
         step("Проверить, что в ответе нужная почта", () ->
-        assertEquals("janet.weaver@reqres.in", data.getUser().getEmail()));
+                assertEquals("janet.weaver@reqres.in", data.getUser().getEmail()));
     }
 
     @Test
@@ -37,16 +37,16 @@ public class ReqresTest {
     void checkSingleNameLombok() {
         UserData data = step("Проверить имя и фамилию пользователя", () ->
                 given(request)
-                .when()
-                .get("/users/2")
-                .then()
-                .spec(responseOk200)
-                .log().body()
-                .extract().as(UserData.class));
+                        .when()
+                        .get("/users/2")
+                        .then()
+                        .spec(responseOk200)
+                        .log().body()
+                        .extract().as(UserData.class));
         step("Проверить имя", () ->
-        assertEquals("Janet", data.getUser().getFirstName()));
+                assertEquals("Janet", data.getUser().getFirstName()));
         step("Проверить фамилию", () ->
-        assertEquals("Weaver", data.getUser().getLastName()));
+                assertEquals("Weaver", data.getUser().getLastName()));
     }
 
     @Test
@@ -55,10 +55,10 @@ public class ReqresTest {
     void listUserTest() {
         step("Провить вывод текста и урла для раздела поддержки", () ->
                 given(request)
-                .when()
-                .get("/users?page=2")
-                .then()
-                .spec(responseOk200))
+                        .when()
+                        .get("/users?page=2")
+                        .then()
+                        .spec(responseOk200))
                 .body("total", is(12))
                 .body("support.text", is("To keep ReqRes free, contributions towards server costs are appreciated!"))
                 .body("support.url", is("https://reqres.in/#support-heading"));
@@ -73,16 +73,16 @@ public class ReqresTest {
         userBody.setJob("leader");
         UserResponse response = step("Создать нового пользователя", () ->
                 given(request)
-                .body(userBody)
-                .when()
-                .post("/users")
-                .then()
-                .spec(responseCreated201)
-                .extract().as(UserResponse.class));
+                        .body(userBody)
+                        .when()
+                        .post("/users")
+                        .then()
+                        .spec(responseCreated201)
+                        .extract().as(UserResponse.class));
         step("Проверить имя созданного пользователя", () ->
-        assertThat(response.getName()).isEqualTo("morpheus"));
+                assertThat(response.getName()).isEqualTo("morpheus"));
         step("Проверить поле работа у нового пользователя", () ->
-        assertThat(response.getJob()).isEqualTo("leader"));
+                assertThat(response.getJob()).isEqualTo("leader"));
     }
 
     @Test
@@ -94,17 +94,17 @@ public class ReqresTest {
         userBody.setJob("zion resident");
         UserResponse response = step("Обновить данные пользователя", () ->
                 given(request)
-                .body(userBody)
-                .when()
-                .put("/users/2")
-                .then()
-                .spec(responseOk200)
-                .extract().as(UserResponse.class));
+                        .body(userBody)
+                        .when()
+                        .put("/users/2")
+                        .then()
+                        .spec(responseOk200)
+                        .extract().as(UserResponse.class));
 
         step("Проверить имя пользователя", () ->
-        assertThat(response.getName()).isEqualTo("morpheus"));
+                assertThat(response.getName()).isEqualTo("morpheus"));
         step("Проверить новое значение в поле работа", () ->
-        assertThat(response.getJob()).isEqualTo("zion resident"));
+                assertThat(response.getJob()).isEqualTo("zion resident"));
 
     }
 
@@ -117,15 +117,15 @@ public class ReqresTest {
         userBody.setPassword("cityslicka");
         UserResponse response = step("Успешная авторизация", () ->
                 given(request)
-                .body(userBody)
-                .when()
-                .post("/login")
-                .then()
-                .spec(responseOk200)
-                .extract().as(UserResponse.class));
+                        .body(userBody)
+                        .when()
+                        .post("/login")
+                        .then()
+                        .spec(responseOk200)
+                        .extract().as(UserResponse.class));
 
         step("Проверить токен", () ->
-        assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
+                assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4"));
     }
 
     @Test
@@ -137,15 +137,15 @@ public class ReqresTest {
 
         UserResponse response = step("Неуспешная авторизация", () ->
                 given(request)
-                .body(userBody)
-                .when()
-                .post("/login")
-                .then()
-                .spec(responseBadRequest400)
-                .extract().as(UserResponse.class));
+                        .body(userBody)
+                        .when()
+                        .post("/login")
+                        .then()
+                        .spec(responseBadRequest400)
+                        .extract().as(UserResponse.class));
 
         step("Проверить наличие текста ошибки", () ->
-        assertThat(response.getError()).isEqualTo("Missing password"));
+                assertThat(response.getError()).isEqualTo("Missing password"));
     }
 
     @Test
@@ -153,7 +153,7 @@ public class ReqresTest {
     @DisplayName("Удаление данных")
     void deleteUser() {
         step("Запрос на удаление", () ->
-                        given(request)
+                given(request)
                         .when()
                         .delete("/users/2")
                         .then()
