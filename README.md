@@ -24,7 +24,7 @@
 <a href="https://github.com/allure-framework/allure2"><img src="media/logo/Allure.svg" width="50" height="50"  alt="Allure"/></a>
 <a href="https://qameta.io/"><img src="media/logo/Allure_Test_Ops.svg" width="50" height="50"  alt="AllureTestOps"/></a>
 <a href="https://www.jenkins.io/"><img src="media/logo/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>
-<a href="https://https://telegram.org/"><img src="media/logo/Telegram.svg" width="50" height="50"  alt="Telegram"/></a>
+<a href="https://web.telegram.org/a/"><img src="media/logo/Telegram.svg" width="50" height="50"  alt="Telegram"/></a>
 </p>
 
 <a id="checking"></a>
