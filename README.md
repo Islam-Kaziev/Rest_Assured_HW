@@ -71,11 +71,11 @@ clean test
 </p>
 
 <a id="allure"></a>
-## <img src="media/logo/AllureTestOps.png" width="25" height="25"  alt="Allure_TO"/></a> Интеграция с  <a target="_blank" href="https://allure.autotests.cloud/project/3376/dashboards"> Allure TestOps</a>
+## <img src="media/logo/Allure_Test_Ops.svg" width="25" height="25"  alt="Allure_TO"/></a> Интеграция с  <a target="_blank" href="https://allure.autotests.cloud/project/3376/dashboards"> Allure TestOps</a>
 
 ## :pinching_hand:: Пример тест-кейса
 <p align="center">
-<img title="AllureTC" src="media/screens/AllureTestOps.png">
+<img title="AllureTC" src="media/screens/Allure_Test_Ops.svg">
 </p>
 
 ## :runner:: Прогоны
