@@ -39,9 +39,9 @@
 - ✓ Удаление данных
 
 <a id="jenkins"></a>
-## <img src="media/logo/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> Сборка в <a target="_blank" href="https://jenkins.autotests.cloud/job/Rest_Api_Kurysheva/"> Jenkins </a>
+## <img src="media/logo/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a> Сборка в <a target="_blank" href="https://jenkins.autotests.cloud/job/Students/job/Rest_Assured_HW/"> Jenkins </a>
 <p align="center">
-<a href="https://jenkins.autotests.cloud/job/Rest_Api_Kurysheva/"><img src="media/screens/Jenkins.png" alt="Jenkins1"/></a>
+<a href="https://jenkins.autotests.cloud/job/Students/job/Rest_Assured_HW/"><img src="media/screens/Jenkins.png" alt="Jenkins1"/></a>
 </p>
 После выполнения сборки, в блоке <code>История сборок</code> напротив номера сборки появятся значки <code>Allure Report</code> и <code>Allure TestOps</code>, при клике на которые откроется страница с сформированным html-отчетом и тестовой документацией соответственно.
 
@@ -63,7 +63,7 @@ gradle clean test
 clean test
 ```
 <a id="allureReport"></a>
-## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logo/Allure.svg"> </a> Пример <a target="_blank" href="https://jenkins.autotests.cloud/job/Rest_Api_Kurysheva/allure/"> Allure-отчета </a>
+## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logo/Allure.svg"> </a> Пример <a target="_blank" href="https://jenkins.autotests.cloud/job/Students/job/Rest_Assured_HW/6/allure/"> Allure-отчета </a>
 ## ⛅: Основной отчет
 
 <p align="center">
@@ -71,7 +71,7 @@ clean test
 </p>
 
 <a id="allure"></a>
-## <img src="media/logo/AllureTestOps.png" width="25" height="25"  alt="Allure_TO"/></a> Интеграция с  <a target="_blank" href="https://allure.autotests.cloud/project/3351/dashboards"> Allure TestOps</a>
+## <img src="media/logo/AllureTestOps.png" width="25" height="25"  alt="Allure_TO"/></a> Интеграция с  <a target="_blank" href="https://allure.autotests.cloud/project/3376/dashboards"> Allure TestOps</a>
 
 ## :pinching_hand:: Пример тест-кейса
 <p align="center">
