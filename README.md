@@ -59,10 +59,8 @@
 gradle clean test
 ```
 
-Удаленный запуск:
-```
-clean test
-```
+Удалённый запуск осуществляется через Jenkins
+
 <a id="allureReport"></a>
 ## <img width="4%" style="vertical-align:middle" title="Allure Report" src="media/logo/Allure.svg"> </a> Пример <a target="_blank" href="https://jenkins.autotests.cloud/job/Students/job/Rest_Assured_HW/6/allure/"> Allure-отчета </a>
 ## ⛅: Основной отчет
